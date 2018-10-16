@@ -1,0 +1,5 @@
+package com.home.helpdesk.api.securyti.controller;
+
+public class AuthenticationRestController {
+
+}

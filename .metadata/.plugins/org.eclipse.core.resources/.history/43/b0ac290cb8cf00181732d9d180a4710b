@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.home.helpdesk.HelpDeskApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.439 s <<< FAILURE! - in com.home.helpdesk.HelpDeskApplicationTests
+contextLoads(com.home.helpdesk.HelpDeskApplicationTests)  Time elapsed: 0.009 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.parsing.BeanDefinitionParsingException: 
+Configuration problem: @Bean method 'getPasswordEncoder' must not be private or final; change the method's modifiers to continue
+Offending resource: class path resource [com/home/helpdesk/api/securyti/config/WebSecurityConfig.class]
+

@@ -1,0 +1,5 @@
+package com.home.helpdesk.api.repository;
+
+public interface ChangeStatusRepository {
+
+}

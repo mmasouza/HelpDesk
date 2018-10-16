@@ -1,0 +1,28 @@
+package com.home.helpdesk;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.home.helpdesk.api.repository.UserRespository;
+
+@SpringBootApplication
+public class HelpDeskApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(HelpDeskApplication.class, args);
+	}
+	
+	@Bean
+	CommandLineRunner init(UserRespository userRespository, PasswordEncoder passwordEncoder) {
+		return args -> {
+			initUsers(userRespository, passwordEncoder);
+		};
+	}
+	
+	private void initUsers(UserRespository userRepository, PasswordEncoder passwordEncoder) {
+		
+	}
+}

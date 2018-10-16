@@ -1,0 +1,40 @@
+package com.home.helpdesk.api.impl;
+
+import org.springframework.data.domain.Page;
+
+import com.home.helpdesk.api.entity.User;
+import com.home.helpdesk.api.service.UserService;
+
+public class UserServiceImpl implements UserService{
+
+	@Override
+	public User findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User createOrUpdate(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User fundById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Page<User> findAll(int page, int count) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

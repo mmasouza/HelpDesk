@@ -1,0 +1,5 @@
+package com.home.helpdesk.api.securyti.service;
+
+public class JwtUserDetailsServiceImpl {
+
+}

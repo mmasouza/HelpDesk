@@ -1,0 +1,31 @@
+package com.home.helpdesk.api.securyti.jwt;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import com.home.helpdesk.api.entity.User;
+import com.home.helpdesk.api.enums.ProfileEnum;
+
+public class JwtUserFactory {
+
+	private JwtUserFactory() {
+		
+	}
+	//Converte o usuario
+	public static JwtUser create(User user) {
+		return new JwtUser(user.getId(), 
+				user.getEmail(), 
+				user.getPassword(), 
+				mapToGrantedAuthorities(user.getProfile()));
+		
+	}
+	//converte perfil de usuario
+	private static List<GrantedAuthority> mapToGrantedAuthorities(ProfileEnum profileEnum) {
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		authorities.add(new SimpleGrantedAuthority(profileEnum.toString()));
+		return authorities;
+	}
+}

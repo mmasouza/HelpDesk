@@ -1,0 +1,3 @@
+jwt.secret=helpDesck_Marcos
+#expiraton 7 days
+jwt.expiration=604800

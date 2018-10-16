@@ -1,0 +1,5 @@
+package com.home.helpdesk.api.impl;
+
+public class UserServiceImpl {
+
+}

@@ -1,0 +1,45 @@
+package com.home.helpdesk.api.entity;
+
+
+
+import java.util.List;
+import java.util.Date;
+
+import javax.jws.soap.SOAPBinding.Use;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.home.helpdesk.api.enums.PriorityEnum;
+import com.home.helpdesk.api.enums.StatusEnum;
+
+@Document
+public class Ticket {
+
+	@Id
+	private String id;
+	
+	@DBRef(lazy = true)
+	private User user;
+	
+	private Date date;
+	
+	private String title;
+	
+	private Integer number;
+	
+	private StatusEnum status;
+	
+	private PriorityEnum priority;
+	
+	@DBRef(lazy = true)
+	private User assigmerUser;
+	
+	private String description;
+	
+	private String image;
+	
+	private java.util.List<ChangeStatus> changes;
+	
+}

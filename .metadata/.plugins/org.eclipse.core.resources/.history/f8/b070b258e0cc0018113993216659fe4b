@@ -1,0 +1,5 @@
+package com.home.helpdesk.api.entity;
+
+public class ChangeStatus {
+
+}

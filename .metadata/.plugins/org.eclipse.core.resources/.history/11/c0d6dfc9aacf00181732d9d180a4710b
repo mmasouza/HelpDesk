@@ -1,0 +1,60 @@
+package com.home.helpdesk.api.securyti.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.home.helpdesk.api.securyti.jwt.JwtAuthenticationRequest;
+import com.home.helpdesk.api.securyti.jwt.JwtTokenUtil;
+import com.home.helpdesk.api.securyti.model.CurrentUser;
+import com.home.helpdesk.api.service.UserService;
+
+@RestController
+@CrossOrigin(origins = "*")
+public class AuthenticationRestController {
+
+	@Autowired
+	private AuthenticationManager autheticationManager; 
+	
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private UserService userService;
+	
+	
+	//methodo para chama o autenticado
+	@PostMapping (value="/api/auth")
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
+	
+		final Authentication authentication = autheticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(
+						authenticationRequest.getEmail(),
+						authenticationRequest.getEmail()
+						)
+				);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
+		final String token = jwtTokenUtil.generateToken(userDetails);
+		final User user = userService.findByEmail(authenticationRequest.getEmail());
+		user.setPassword(null);
+		return ResponseEntity.ok(new CurrentUser(token, user));
+
+	}
+	
+}

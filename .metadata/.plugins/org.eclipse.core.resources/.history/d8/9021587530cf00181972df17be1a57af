@@ -1,0 +1,5 @@
+package com.home.helpdesk.api.service;
+
+public interface UserService {
+
+}
